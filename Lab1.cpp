@@ -1,4 +1,4 @@
-//
+ //
 // Jordan Pierson
 // COSC2030 Lab1
 // September 17, 2018
@@ -30,7 +30,7 @@ int main()
 		first2(0.0),
 		last1(0.0),
 		last2(0.0);
-	ifstream file;
+	ifstream file; // creates a input filestream named file
 	cout << "Enter a file name:" << endl; // prompts user for filename
 	getline(cin, filename); //recieves input from user
 
@@ -40,7 +40,6 @@ int main()
 	{
 		cerr << "Could not open file :" << filename <<
 			".\nPlease enter a different filename:" << endl;
-		getline(cin, filename);
 		file.open(filename);
 		while (!file) // checks if filename is correct until a "good" filename is given
 		{
@@ -50,30 +49,30 @@ int main()
 			file.open(filename);
 		}
 	}
-	string inBuf;
+	
 	int i(0);
 	double temp;
-	file >> temp;
+	file >> temp; // reads first number from the file and stores it into a temporary variable
 	while (!file.fail())
 	{
 		
-		if (i == 0)
+		if (i == 0) // stores the first number
 		{
 			 first1 = temp;
 		}
-		else if (i == 1)
+		else if (i == 1) // stores the second number
 		{
 			first2 = temp;
 		}
 		else
 		{
-			last1 = last2;
-			last2 = temp;
+			last1 = last2; // stores the second to last number as the last number
+			last2 = temp; // stores the last number from temp
 		}
-		i++;
-		file >> temp;
+		i++; // increments for a count
+		file >> temp; // reads the next number in the file and stores it in temp
 	}
-	file.close();
+	file.close(); //  closes the file
 	cout << "The file " << filename << " contains " << i << " numbers."
 		<< "\nThe first two numbers are " << first1 << ", and " << first2
 		<< ".\nThe last two numbers are " << last1 << ", and " << last2 << endl;
